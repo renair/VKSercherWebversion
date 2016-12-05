@@ -1,0 +1,32 @@
+{
+  "name": "vkgraph",
+  "version": "0.0.1",
+  "description": "Serch path between two peoples in vk using vkAPI",
+  "main": "main.js",
+  "scripts": {
+    "test": "nodejs main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renair/VKSercherWebversion.git"
+  },
+  "keywords": [
+    "vk",
+    "api",
+    "graph",
+    "serch"
+  ],
+  "author": "Andrew Gomenyuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/renair/VKSercherWebversion/issues"
+  },
+  "homepage": "https://github.com/renair/VKSercherWebversion#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "http": "0.0.0",
+    "python": "0.0.4",
+    "socket.io": "^1.7.0"
+  }
+}
