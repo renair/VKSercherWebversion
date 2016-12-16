@@ -36,14 +36,14 @@ class MongoCacher:
 	#self.db
 	#self.collection
 	def __init__(self, host, port, db_name='', collection_name=''):
-		#try:
+		try:
 			self.mongo_client = MongoClient(host, port)
 			if db_name:
 				self.select_db(db_name)
 			if collection_name:
 				self.select_collection(collection_name)
-		#except Exception:
-		#	print("Can't connect to db")
+		except Exception:
+			print("Can't connect to db")
 	
 	def select_db(self, db_name):
 		self.db = self.mongo_client[db_name]

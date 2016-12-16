@@ -15,10 +15,10 @@ class Finder:
 		to_serch = deque([start])
 		ancestors = dict()
 		result = []
-		while len(viewed) < 10000:
+		while len(viewed) < 5001:
 			serch_id = to_serch.popleft()
 			if serch_id not in viewed:
-				friends = self.cacher.load_with_callback(serch_id, api.get_friends)	# using mongo cacher #api.get_friends(serch_id)
+				friends = api.get_friends(serch_id) #self.cacher.load_with_callback(serch_id, api.get_friends)	# using mongo cacher #api.get_friends(serch_id)
 				#print(str(len(viewed)))
 				stdout.write(str(len(viewed))+"\n")
 				for user in friends:
@@ -34,6 +34,7 @@ class Finder:
 					viewed.clear()
 					to_serch.clear()
 					ancestors.clear()
+					stdout.flush()
 					return result
 				elif len(to_serch) < 20000:
 					to_serch.extend(friends)
@@ -44,4 +45,5 @@ class Finder:
 		viewed.clear()
 		to_serch.clear()
 		ancestors.clear()
+		stdout.flush()
 		return result

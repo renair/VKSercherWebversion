@@ -1,14 +1,18 @@
+var express = require('express');
 var server = require('express')();
 var http = require('http').createServer(server);
 var io = require('socket.io');
+var path = require('path');
 var child_process = require('child_process');
 
 io = io.listen(http);
 
 server.get("/",function(req, res){
-    res.sendFile("/home/andrew/Documents/HTML/NIT/project/Frontend/index.html");
+    res.sendFile("/home/andrew/Documents/vk_site/Frontend/index.html");
     console.log("page got\n");
 });
+
+server.use(express.static(path.join(__dirname, '../Frontend/')));
 
 io.sockets.on('connection', function (socket) {
     console.log("User connected to Socket.IO");
@@ -46,7 +50,6 @@ io.sockets.on('connection', function (socket) {
 
 function runPython(from, dest, dataCallback, resultCallback){
     var finalResult = `DONE found from ${from} to ${dest}`;
-    //var serch_proc = child_process.exec(`python3.5 main.py ${from} ${dest}`,{maxBuffer:512*1024}); //not workable variant
     var serch_proc = child_process.spawn(`python3.5`,["python/main.py", from, dest]);
     serch_proc.stdout.setEncoding('utf-8');
     serch_proc.stderr.setEncoding('utf-8');

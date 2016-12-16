@@ -1,44 +1,67 @@
 <html>
 <head>
-	<title>Test socket.io</title>
-<!--	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.6.0/socket.io.min.js"></script>-->
-	<script src="/socket.io/socket.io.js"></script>
+	<title>Find Way</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles/bootstrap.css" type="text/css">
+	<link rel="stylesheet" href="styles/main.css" type="text/css">
 </head>
 <body>
-    <div id="response"></div>
-    <input type="number" placeholder="from" id="from">
-    <input type="number" placeholder="to" id="to">
-    <button onclick="startSerch();">Please start</button>
-    <button id="stopSerch">STOP</button>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script>
-    function startSerch(){
+<!--   Menue-->
+<nav class="navbar navbar-default header-text">
+        Знайди зв'язок з людьми використовуючи соціальну мережу ВК.
+</nav>
+<div class="inputs container">
+    <div class="fields">
+        <div class="row">
+            <div class="col-sm-12">
+               <div class="input-group input">
+                   <span class="input-group-addon" id="from_name">id</span>
+                   <input type="text" class="form-control" id="from" placeholder="From">
+               </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="input-group input">
+                   <span class="input-group-addon" id="to_name">id</span>
+                   <input type="text" class="form-control" id="to" placeholder="From">
+               </div>
+            </div>
+        </div>
+    </div>
+    <div class="buttons">
+        <div class="row">
+            <div class="col-sm-6">
+               <div class="btn-group btn-group-justified start-btn">
+                   <a class="btn btn-success" role="button" id="start_button">
+                        Start Serch!
+                    </a>
+               </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="btn-group btn-group-justified stop-btn">
+                   <a class="btn btn-danger" role="button" id="stop_button">
+                        STOP
+                    </a>
+               </div>
+            </div>
+        </div>
+    </div>
+    <div class="progress loader" id="progress">
+        <div class="progress-bar progress-bar-info" role="progressbar" style="width: 0%">
+            0%
+        </div>
+    </div>
+    <div class="result row" id="result_screen">
         
-        var socket = io();
-
-        socket.on('disconnect',function(){
-            console.log("Disconnected");
-            socket.close();
-        });
-        
-        socket.on('serchResultEvent', function (data) {
-            
-        });
-
-        socket.on('serchInProgressEvent',function(data){
-            $("#response").text(data);
-        });
-        
-        $("#stopSerch").click(function(){
-            socket.emit('stopSerchEvent',{});
-            //socket.close();
-        });
-
-        socket.emit('serchEvent', {
-            start:+$("#from").val(),
-            destination:+$("#to").val()
-        });
-    }
-	</script>
+    </div>
+    <div class="alert alert-danger" id="not-found" role="alert">
+        На жаль, серед просканованих 5000 користувачів не було знайдено тих,які зв'язують <span class="name1"></span> та <span class="name2"></span>.
+    </div>
+</div>
+<!--End fo menue-->
+<!--    JavaScript downloading-->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

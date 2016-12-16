@@ -21,8 +21,9 @@ target = sys.argv[2]
 #users = vk_finder.serch(30851865,283505314)
 #users = vk_finder.serch(23342234,24234624)
 users = vk_finder.serch(int(first), int(target))
-
-users = vk_api.get_user(users)
 users.reverse()
-for user in users:
-	print(user['first_name']+" "+user['last_name'],end=" -> ")
+print(users)
+
+#users = vk_api.get_user(users)
+#users.reverse()
+#print(users)
